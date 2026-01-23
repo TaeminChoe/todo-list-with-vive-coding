@@ -1,4 +1,5 @@
 # issue-rule.md
+
 ## Issue Documentation Rules
 
 ---
@@ -131,6 +132,7 @@ YYYY-MM-DD HH:MM
     - `Resolution Summary`
 
 **Resolved At 규칙**
+
 - `Resolved At`에는 해결이 확정된 시점을 대표하는 **이슈 파일명(ISS-...md)** 을 기록한다.
 - 예: `ISS-2026-01-23-1422-step03.md`
 
@@ -171,3 +173,55 @@ YYYY-MM-DD HH:MM
 ## 10. 이 문서의 위상
 
 이 문서는 `/docs/issues/` 디렉토리 내에서 **이슈 작성·추적·종결 규칙의 최상위 문서**다.
+
+---
+
+## 11. 로그 디렉토리 분리 규칙 (추가)
+
+### 11.1 디렉토리 구조
+
+이슈 문서는 다음 구조를 따른다.
+
+```
+/docs/issues
+ ├─ issue-rule.md        ← 이슈 규칙 (본 문서)
+ ├─ template.md          ← 실행 단위 이슈 로그 템플릿
+ ├─ README.md            ← 실행 결과 요약 리포트 (자동 생성 가능, 파생 문서)
+ ├─ readme-template.md   ← README 고정 포맷 템플릿(규범)
+ └─ logs/
+     └─ ISS-YYYY-MM-DD-HHMM-[context].md
+```
+
+- 실제 실행 단위 이슈 로그 파일은 반드시 `/docs/issues/logs/` 하위에 생성한다.
+- `/docs/issues/` 루트에는 규칙 문서, 템플릿, 요약/포맷 문서만 위치한다.
+- 위 규칙을 위반한 이슈 파일은 유효한 이슈 로그로 간주하지 않는다.
+
+---
+
+## 12. issues/README.md 자동 생성 및 고정 포맷 (추가)
+
+### 12.1 README의 성격
+
+- `README.md`는 `/docs/issues/logs/` 하위 로그를 기반으로 한 **요약 리포트(derived artifact)** 다.
+- README는 기준 문서(Source of Truth)가 아니다.
+- 기준 문서는 항상 `/docs/issues/logs/ISS-*.md` 이다.
+- README는 언제든 삭제될 수 있으며, 필요 시 다시 생성된다.
+
+### 12.2 README 생성 주체 및 권한
+
+- AI는 실행 종료 시 `README.md`를 **자동 생성/갱신**할 수 있다.
+- README의 내용은 결정(Decision)이나 규칙 변경으로 간주되지 않는다.
+- README는 요약 용도이며, 사용자 판단을 대체하지 않는다.
+
+### 12.3 README 생성 시점
+
+- 하나의 실행 세션 종료 시
+  - 예: Preflight 완료 후 Step 실행 완료, 테스트 통과, PR 생성 완료 등
+- 또는 사용자가 명시적으로 요약 생성/갱신을 요청한 경우
+
+### 12.4 README 고정 포맷(규범)
+
+- README의 고정 포맷은 `/docs/issues/readme-template.md`를 **규범(정본)** 으로 한다.
+- README를 생성/갱신할 때는 반드시 해당 템플릿의 구조/섹션/필드를 유지한다.
+- 템플릿을 변경하려면 사용자가 `readme-template.md`를 수정하며,
+  포맷 변경은 본 문서(본 섹션)와의 정합성이 유지되어야 한다.
