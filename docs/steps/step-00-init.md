@@ -114,6 +114,7 @@
 ### 단계 0: 프로젝트 구조 생성 (Vite 초기화)
 
 저장소를 클론했을 때 다음 파일들이 이미 루트에 존재해야 한다:
+
 - `package.json`
 - `vite.config.ts`
 - `tsconfig.json`
@@ -138,7 +139,7 @@ npm create vite@latest . -- --template react-ts
 #### 1-1. npm install 실행
 
 ```bash
-npm install --legacy-peer-deps
+npm install
 ```
 
 #### 1-2. npm install 진행 상황 모니터링
@@ -159,6 +160,7 @@ ps aux | grep "npm install" | grep -v grep && echo "✓ npm install 실행 중" 
 ```
 
 **진행 흐름 예시**:
+
 ```
 초기:   du -sh node_modules
         아직 생성 중...
@@ -192,6 +194,7 @@ npm list --depth=0
 ```
 
 **정상 출력 예시**:
+
 ```
 vive-todo-list@0.0.1
 ├── react@18.2.0
@@ -205,17 +208,20 @@ vive-todo-list@0.0.1
 **증상**: 10분 이상 실행되거나 에러 발생
 
 **해결 방법 1 - npm 캐시 초기화**:
+
 ```bash
 npm cache clean --force
 npm install --legacy-peer-deps
 ```
 
 **해결 방법 2 - registry 변경**:
+
 ```bash
 npm install --legacy-peer-deps --registry https://registry.npmjs.org/
 ```
 
 **해결 방법 3 - yarn 사용 (npm 대체)**:
+
 ```bash
 yarn install
 ```
@@ -239,6 +245,7 @@ ls src/App.tsx src/main.tsx src/pages/TodoListPage.tsx \
 ```
 
 **파일 목록**:
+
 ```
 src/
   ├── App.tsx
@@ -270,6 +277,7 @@ npm run dev
 ```
 
 **예상 출력**:
+
 ```
   VITE v5.0.2  ready in 234 ms
 
@@ -282,6 +290,7 @@ npm run dev
 브라우저를 열고 `http://localhost:5173` 접속
 
 **확인 항목**:
+
 - ✅ AC-000-01: 페이지가 오류 없이 로드됨 (개발자 도구에 에러 없음)
 - ✅ AC-000-02: "My Todo List" 제목이 보임
 - ✅ AC-000-03: 파란색 배경과 흰색 텍스트가 있음 (TailwindCSS 스타일 적용됨)
@@ -306,6 +315,7 @@ npm run test:e2e
 #### 4-2. 테스트 실행 확인
 
 **예상 출력**:
+
 ```
 Running 4 tests using 1 worker
 
@@ -322,11 +332,13 @@ Running 4 tests using 1 worker
 **증상**: 일부 테스트 실패
 
 **확인 사항**:
+
 1. 개발 서버가 `http://localhost:5173`에서 실행 중인지 확인
 2. 브라우저 포트 5173이 다른 프로세스에 점유되지 않았는지 확인
 3. node_modules가 완전히 설치되었는지 확인 (`npm list --depth=0`)
 
 **해결 방법**:
+
 ```bash
 # 개발 서버 프로세스 확인/종료
 ps aux | grep "vite" | grep -v grep
