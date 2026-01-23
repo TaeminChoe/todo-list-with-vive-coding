@@ -1,0 +1,18 @@
+stateDiagram-v2
+  [*] --> Open: 이슈 파일 생성<br/>(고유 Issue ID 부여)
+
+  Open --> Addressed: 사용자가 문서 수정 또는<br/>AI가 코드 변경(해결 가능성 발생)
+  Addressed --> Open: 사전 검증(Preflight)에서<br/>여전히 모호/충돌/누락이 확인됨
+  Addressed --> Resolved: 사전 검증(Preflight) 통과 및<br/>시나리오/AC와 정합성 충족
+
+  note right of Open
+    Open 상태의 Issue ID는
+    Resolved 될 때까지
+    이후 이슈 기록에서 계속 언급.
+  end note
+
+  note right of Resolved
+    Resolved 시점은
+    Resolved At에
+    해결이 확정된 이슈 파일명으로 기록.
+  end note
