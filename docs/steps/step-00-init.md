@@ -104,8 +104,32 @@
 
 ## 8. Implementation Guide
 
+**전제 조건**: 저장소를 클론한 직후 프로젝트 루트 상태
+
 프로젝트 루트에서 아래 단계를 순서대로 수행한다.
 **각 단계는 이전 단계가 성공적으로 완료되어야 다음 단계를 진행할 수 있다.**
+
+---
+
+### 단계 0: 프로젝트 구조 생성 (Vite 초기화)
+
+저장소를 클론했을 때 다음 파일들이 이미 루트에 존재해야 한다:
+- `package.json`
+- `vite.config.ts`
+- `tsconfig.json`
+- `tailwind.config.js`
+- `playwright.config.ts`
+- `src/` 디렉토리
+- `tests/e2e/` 디렉토리
+
+**이 파일들이 없다면**, 아래 명령어로 Vite 프로젝트를 초기화한다:
+
+```bash
+# 현재 디렉토리에 Vite React TypeScript 프로젝트 생성
+npm create vite@latest . -- --template react-ts
+```
+
+> ℹ️ **참고**: Step-01 이후 코드를 진행할 때는 이미 이 파일들이 존재한다.
 
 ---
 
