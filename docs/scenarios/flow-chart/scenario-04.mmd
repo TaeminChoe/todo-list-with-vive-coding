@@ -1,0 +1,37 @@
+flowchart TD
+    Start([시작])
+    ViewList[TODO 목록을 본다]
+    HasItems{수정할 할 일이 존재하는가?}
+
+    SelectItem[수정할 할 일을 선택한다]
+    EnterEdit[수정 동작을 수행한다]
+    Editing[수정 가능한 상태를 본다]
+
+    InputNew[새 내용을 입력한다]
+    SaveAction[수정 반영 동작을 수행한다]
+
+    Valid{입력이 유효한가?}
+    ExistsNow{반영 시점에 대상이 존재하는가?}
+
+    Updated[수정된 내용이 목록에 표시됨을 본다]
+    Invalid[수정이 반영되지 않음을 인지한다]
+    NotUpdated[수정이 수행되지 않음을 인지한다]
+
+    CancelAction[수정 취소 동작을 수행한다]
+    Kept[기존 내용이 유지됨을 본다]
+
+    NoTarget[수정할 대상이 없음을 인지한다]
+    End([종료])
+
+    Start --> ViewList --> HasItems
+    HasItems -- 예 --> SelectItem --> EnterEdit --> Editing
+
+    Editing --> InputNew --> SaveAction --> Valid
+    Valid -- 예 --> ExistsNow
+    ExistsNow -- 예 --> Updated --> End
+    ExistsNow -- 아니오 --> NotUpdated --> End
+    Valid -- 아니오 --> Invalid --> End
+
+    Editing --> CancelAction --> Kept --> End
+
+    HasItems -- 아니오 --> NoTarget --> End

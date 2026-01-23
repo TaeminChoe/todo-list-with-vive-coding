@@ -1,0 +1,21 @@
+flowchart TD
+    Start([시작])
+    ViewList[TODO 목록을 본다]
+    HasItems{대상이 존재하는가?}
+
+    SelectItem[상태를 바꿀 할 일을 선택한다]
+    ToggleAction[완료 상태 토글 동작을 수행한다]
+
+    ExistsNow{토글 시점에 대상이 존재하는가?}
+
+    Updated[완료 상태가 변경됨을 본다]
+    NoTarget[변경할 대상이 없음을 인지한다]
+    NotUpdated[상태 변경이 수행되지 않음을 인지한다]
+
+    End([종료])
+
+    Start --> ViewList --> HasItems
+    HasItems -- 예 --> SelectItem --> ToggleAction --> ExistsNow
+    ExistsNow -- 예 --> Updated --> End
+    ExistsNow -- 아니오 --> NotUpdated --> End
+    HasItems -- 아니오 --> NoTarget --> End

@@ -1,0 +1,21 @@
+flowchart TD
+    Start([시작])
+    ViewList[TODO 목록을 본다]
+    HasItems{삭제할 할 일이 존재하는가?}
+
+    SelectItem[삭제할 할 일을 선택한다]
+    DeleteAction[삭제 동작을 수행한다]
+
+    ExistsNow{삭제 시점에 대상이 존재하는가?}
+
+    Removed[할 일이 목록에서 제거됨을 본다]
+    NoTarget[삭제할 대상이 없음을 인지한다]
+    NotRemoved[삭제가 수행되지 않음을 인지한다]
+
+    End([종료])
+
+    Start --> ViewList --> HasItems
+    HasItems -- 예 --> SelectItem --> DeleteAction --> ExistsNow
+    ExistsNow -- 예 --> Removed --> End
+    ExistsNow -- 아니오 --> NotRemoved --> End
+    HasItems -- 아니오 --> NoTarget --> End

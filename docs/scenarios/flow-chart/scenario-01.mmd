@@ -1,0 +1,20 @@
+flowchart TD
+    Start([시작])
+    ViewList[TODO 목록 화면을 본다]
+    InputTodo[할 일 내용을 입력한다]
+    ClickAdd[추가 동작을 수행한다]
+
+    Validate{입력이 유효한가?}
+
+    Added[할 일이 목록에 표시된다]
+    NotAdded[할 일이 추가되지 않음을 인지한다]
+
+    End([종료])
+
+    Start --> ViewList
+    ViewList --> InputTodo
+    InputTodo --> ClickAdd
+    ClickAdd --> Validate
+
+    Validate -- 예 --> Added --> End
+    Validate -- 아니오 --> NotAdded --> End
