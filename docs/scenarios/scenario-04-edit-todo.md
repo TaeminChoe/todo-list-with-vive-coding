@@ -6,10 +6,11 @@
 
 ## 1. Scenario Overview
 
-- **Scenario ID**: SC-04
+- **Scenario ID**: SCN-004
 - **Title**: 사용자는 할 일 내용을 수정한다
 - **Primary Actor**: 사용자
 - **Goal**: 사용자는 기존 할 일의 내용을 변경할 수 있다
+- **Related AC**: AC-001-03, AC-001-04, AC-001-05
 
 ---
 

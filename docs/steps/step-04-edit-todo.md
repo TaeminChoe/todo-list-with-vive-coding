@@ -31,8 +31,10 @@
 
 여기에 명시되지 않은 파일은 존재하지 않는 것으로 간주한다.
 
+- Scenarios:
+  - docs/scenarios/scenario-04-edit-todo.md (SCN-004)
 - Acceptance Criteria:
-  - docs/acceptance-criteria/AC-04-edit-todo.md
+  - docs/acceptance-criteria/ac-01-todo.md (AC-001-03, AC-001-04, AC-001-05)
 - Decisions:
   - (없음)
 - Issues:
@@ -42,10 +44,9 @@
 
 ## 4. Acceptance Criteria (Step Final)
 
-- **AC-04-01**: 사용자는 기존 TODO 항목을 수정할 수 있는 UI에 진입할 수 있다.
-- **AC-04-02**: 수정된 TODO 내용은 저장 후 목록에 반영된다.
-- **AC-04-03**: 수정하지 않은 항목은 변경되지 않는다.
-- **AC-04-04**: 빈 내용으로 저장할 수 없다.
+- **AC-001-03**: 사용자가 유효한 내용을 입력하고 수정 반영 동작을 수행하면, 해당 Todo의 내용이 변경되어 목록에 표시된다.
+- **AC-001-04**: 사용자가 수정 취소 동작을 수행하면, Todo의 기존 내용이 유지되어 표시된다.
+- **AC-001-05**: 사용자가 유효하지 않은 내용을 입력하고 수정 반영 동작을 수행하면, 수정 내용은 반영되지 않는다.
 
 ---
 

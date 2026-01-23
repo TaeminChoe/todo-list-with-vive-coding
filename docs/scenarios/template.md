@@ -5,10 +5,11 @@
 
 ## 1. Scenario Overview
 
-- **Scenario ID**: SC-XX
+- **Scenario ID**: SCN-XXX
 - **Title**: 사용자 관점에서 표현한 시나리오 제목
 - **Primary Actor**: (예: 사용자, 관리자 등)
 - **Goal**: 이 시나리오를 통해 사용자가 달성하려는 목적
+- **Related AC**: AC-XXX (해당하는 Acceptance Criteria)
 
 ---
 

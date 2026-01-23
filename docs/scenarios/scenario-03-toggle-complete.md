@@ -6,10 +6,11 @@
 
 ## 1. Scenario Overview
 
-- **Scenario ID**: SC-03
+- **Scenario ID**: SCN-003
 - **Title**: 사용자는 할 일 완료 상태를 토글한다
 - **Primary Actor**: 사용자
 - **Goal**: 사용자는 할 일의 완료/미완료 상태를 변경할 수 있다
+- **Related AC**: AC-001-06
 
 ---
 

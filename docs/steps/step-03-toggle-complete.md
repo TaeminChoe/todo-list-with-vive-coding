@@ -31,8 +31,10 @@
 
 여기에 명시되지 않은 파일은 존재하지 않는 것으로 간주한다.
 
+- Scenarios:
+  - docs/scenarios/scenario-03-toggle-complete.md (SCN-003)
 - Acceptance Criteria:
-  - docs/acceptance-criteria/AC-03-toggle-complete.md
+  - docs/acceptance-criteria/ac-01-todo.md (AC-001-06)
 - Decisions:
   - (없음)
 - Issues:
@@ -42,10 +44,7 @@
 
 ## 4. Acceptance Criteria (Step Final)
 
-- **AC-03-01**: 각 TODO 항목은 완료 여부를 나타내는 UI를 가진다.
-- **AC-03-02**: 사용자가 토글 동작을 수행하면 완료 상태가 전환된다.
-- **AC-03-03**: 완료 상태는 시각적으로 구분 가능하다.
-- **AC-03-04**: 완료 상태 변경은 다른 TODO 항목에 영향을 주지 않는다.
+- **AC-001-06**: 사용자가 완료 상태 토글 동작을 수행하면, 해당 Todo의 완료 상태가 변경되어 목록에 표시된다.
 
 ---
 

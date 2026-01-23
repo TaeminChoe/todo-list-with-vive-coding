@@ -6,13 +6,13 @@
 
 ## 1. Acceptance Criteria Overview
 
-- **AC Document ID**: AC-01
+- **AC Document ID**: AC-001
 - **Title**: Todo 도메인에 대한 통합 판정 기준
 - **Derived From Scenarios**:
-  - SC-01 (scenario-01-create-todo.md)
-  - SC-02 (scenario-02-delete-todo.md)
-  - SC-03 (scenario-03-toggle-complete.md)
-  - SC-04 (scenario-04-edit-todo.md)
+  - SCN-001 (scenario-01-create-todo.md)
+  - SCN-002 (scenario-02-delete-todo.md)
+  - SCN-003 (scenario-03-toggle-complete.md)
+  - SCN-004 (scenario-04-edit-todo.md)
 - **Description**:
   - 사용자가 Todo를 생성, 수정, 삭제하고
     완료 상태를 변경하는 전 과정에서
@@ -24,55 +24,139 @@
 
 ### Creation
 
-- **AC-01-01**
-  - 사용자가 유효한 내용을 입력하고 Todo 추가 동작을 수행하면,
-    새로운 Todo는 목록에 표시된다.
+### AC-001-01: 유효한 입력으로 Todo 생성
 
-- **AC-01-02**
-  - 사용자가 내용을 입력하지 않거나 유효하지 않은 입력으로
-    Todo 추가를 시도한 경우,
-    Todo는 생성되지 않는다.
+**Related Scenarios**
+- SCN-001
+
+**Given**
+- 사용자가 TODO 서비스에 접근한 상태
+
+**When**
+- 사용자가 유효한 내용을 입력하고 추가 동작을 수행한다
+
+**Then**
+- 새로운 Todo가 목록에 표시된다
+
+---
+
+### AC-001-02: 빈/유효하지 않은 입력으로 Todo 생성 시도
+
+**Related Scenarios**
+- SCN-001
+
+**Given**
+- 사용자가 TODO 서비스에 접근한 상태
+
+**When**
+- 사용자가 빈 입력 또는 유효하지 않은 입력으로 추가 동작을 수행한다
+
+**Then**
+- Todo는 생성되지 않는다
 
 ---
 
 ### Update (Content)
 
-- **AC-01-03**
-  - 사용자가 유효한 내용을 입력하고 수정 반영 동작을 수행하면,
-    해당 Todo의 내용은 변경된다.
+### AC-001-03: 유효한 입력으로 Todo 내용 수정
 
-- **AC-01-04**
-  - 사용자가 수정을 취소한 경우,
-    Todo의 기존 내용은 유지된다.
+**Related Scenarios**
+- SCN-004
 
-- **AC-01-05**
-  - 사용자가 유효하지 않은 내용을 입력한 경우,
-    수정 내용은 반영되지 않는다.
+**Given**
+- 사용자가 수정할 Todo를 목록에서 찾은 상태
+
+**When**
+- 사용자가 유효한 내용을 입력하고 수정 반영 동작을 수행한다
+
+**Then**
+- 해당 Todo의 내용이 변경되어 목록에 표시된다
+
+---
+
+### AC-001-04: Todo 수정 취소
+
+**Related Scenarios**
+- SCN-004
+
+**Given**
+- 사용자가 Todo 수정 가능 상태에 있는 경우
+
+**When**
+- 사용자가 수정 취소 동작을 수행한다
+
+**Then**
+- Todo의 기존 내용이 유지되어 표시된다
+
+---
+
+### AC-001-05: 유효하지 않은 입력으로 Todo 수정 시도
+
+**Related Scenarios**
+- SCN-004
+
+**Given**
+- 사용자가 수정할 Todo를 목록에서 찾은 상태
+
+**When**
+- 사용자가 유효하지 않은 내용을 입력하고 수정 반영 동작을 수행한다
+
+**Then**
+- 수정 내용은 반영되지 않는다
 
 ---
 
 ### Update (Status)
 
-- **AC-01-06**
-  - 사용자가 완료 상태 토글 동작을 수행하면,
-    해당 Todo의 완료 상태는 변경된다.
+### AC-001-06: Todo 완료 상태 토글
+
+**Related Scenarios**
+- SCN-003
+
+**Given**
+- 사용자가 상태를 변경할 Todo를 목록에서 찾은 상태
+
+**When**
+- 사용자가 완료 상태 토글 동작을 수행한다
+
+**Then**
+- 해당 Todo의 완료 상태가 변경되어 목록에 표시된다
 
 ---
 
 ### Deletion
 
-- **AC-01-07**
-  - 사용자가 기존 Todo에 대해 삭제 동작을 수행하면,
-    해당 Todo는 목록에서 제거된다.
+### AC-001-07: Todo 삭제
+
+**Related Scenarios**
+- SCN-002
+
+**Given**
+- 사용자가 삭제할 Todo를 목록에서 찾은 상태
+
+**When**
+- 사용자가 삭제 동작을 수행한다
+
+**Then**
+- 해당 Todo는 목록에서 제거된다
 
 ---
 
 ### General Failure Conditions
 
-- **AC-01-08**
-  - 대상 Todo가 더 이상 존재하지 않는 상태에서
-    생성 이외의 동작(수정, 삭제, 상태 변경)을 수행한 경우,
-    Todo 목록은 변경되지 않는다.
+### AC-001-08: 존재하지 않는 Todo에 대한 동작
+
+**Related Scenarios**
+- SCN-001, SCN-002, SCN-003, SCN-004
+
+**Given**
+- 대상 Todo가 더 이상 존재하지 않는 상태
+
+**When**
+- 사용자가 생성 이외의 동작(수정, 삭제, 상태 변경)을 수행한다
+
+**Then**
+- Todo 목록은 변경되지 않는다
 
 ---
 

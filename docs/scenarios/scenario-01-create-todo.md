@@ -6,10 +6,11 @@
 
 ## 1. Scenario Overview
 
-- **Scenario ID**: SC-01
+- **Scenario ID**: SCN-001
 - **Title**: 사용자는 할 일을 추가한다
 - **Primary Actor**: 사용자
 - **Goal**: 사용자는 새로운 할 일을 목록에 추가할 수 있다
+- **Related AC**: AC-001-01, AC-001-02
 
 ---
 

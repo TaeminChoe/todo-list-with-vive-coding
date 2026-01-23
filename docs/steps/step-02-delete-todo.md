@@ -31,8 +31,10 @@
 
 여기에 명시되지 않은 파일은 존재하지 않는 것으로 간주한다.
 
+- Scenarios:
+  - docs/scenarios/scenario-02-delete-todo.md (SCN-002)
 - Acceptance Criteria:
-  - docs/acceptance-criteria/AC-02-delete-todo.md
+  - docs/acceptance-criteria/ac-01-todo.md (AC-001-07)
 - Decisions:
   - (없음)
 - Issues:
@@ -42,9 +44,7 @@
 
 ## 4. Acceptance Criteria (Step Final)
 
-- **AC-02-01**: 각 TODO 항목에는 삭제를 수행할 수 있는 UI가 존재한다.
-- **AC-02-02**: 사용자가 삭제 동작을 수행하면 해당 TODO 항목이 목록에서 제거된다.
-- **AC-02-03**: 다른 TODO 항목에는 영향을 주지 않는다.
+- **AC-001-07**: 사용자가 기존 Todo에 대해 삭제 동작을 수행하면, 해당 Todo는 목록에서 제거된다.
 
 ---
 

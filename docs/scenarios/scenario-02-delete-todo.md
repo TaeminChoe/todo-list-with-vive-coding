@@ -6,10 +6,11 @@
 
 ## 1. Scenario Overview
 
-- **Scenario ID**: SC-02
+- **Scenario ID**: SCN-002
 - **Title**: 사용자는 할 일을 삭제한다
 - **Primary Actor**: 사용자
 - **Goal**: 사용자는 기존 할 일을 목록에서 제거할 수 있다
+- **Related AC**: AC-001-07
 
 ---
 

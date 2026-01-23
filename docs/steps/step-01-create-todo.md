@@ -32,8 +32,10 @@
 
 여기에 명시되지 않은 파일은 존재하지 않는 것으로 간주한다.
 
+- Scenarios:
+  - docs/scenarios/scenario-01-create-todo.md (SCN-001)
 - Acceptance Criteria:
-  - docs/acceptance-criteria/AC-01-create-todo.md
+  - docs/acceptance-criteria/ac-01-todo.md (AC-001-01, AC-001-02)
 - Decisions:
   - (없음)
 - Issues:
@@ -43,10 +45,8 @@
 
 ## 4. Acceptance Criteria (Step Final)
 
-- **AC-01-01**: 사용자는 TODO 내용을 입력할 수 있는 입력 UI를 확인할 수 있다.
-- **AC-01-02**: 사용자가 TODO를 입력하고 생성 동작을 수행하면 새로운 TODO가 목록에 추가된다.
-- **AC-01-03**: 생성된 TODO 항목은 입력한 텍스트를 그대로 표시한다.
-- **AC-01-04**: TODO 생성 후 입력 필드는 비워진다.
+- **AC-001-01**: 사용자가 유효한 내용을 입력하고 추가 동작을 수행하면, 새로운 Todo가 목록에 표시된다.
+- **AC-001-02**: 사용자가 빈 입력 또는 유효하지 않은 입력으로 추가 동작을 수행하면, Todo는 생성되지 않는다.
 
 ---
 
