@@ -1,4 +1,5 @@
 # scenarios-rule.md
+
 ## Scenario Documentation Rules
 
 ---
@@ -26,6 +27,7 @@ Scenario 문서는 다음 목적을 가진다.
 - Acceptance Criteria와 Step 문서의 **출발점** 역할을 한다.
 
 Scenario 문서는:
+
 - 요구사항 명세서가 아니다.
 - 구현 방법을 설명하지 않는다.
 - 테스트 코드나 기술 스택을 언급하지 않는다.
@@ -84,6 +86,7 @@ Scenario 문서는 **판단 기준이 아니라 맥락 제공용 문서**다.
 - 기술적 처리, API 호출, 상태 관리 등은 표현하지 않는다.
 
 Flow Chart 생성 규칙:
+
 - 시작과 종료가 명확해야 한다.
 - 조건 분기는 사용자의 선택 또는 입력 기준으로만 표현한다.
 - 내부 로직은 블랙박스로 취급한다.
@@ -107,6 +110,24 @@ Scenario 문서 자체에는 AC를 작성하지 않는다.
 - Scenario가 수정되면:
   - 기존 Acceptance Criteria와 Step은 재검토 대상이 된다.
   - 단, 자동으로 수정되지는 않는다.
+
+---
+
+## 8. Scenario 문서 템플릿 준수 규칙
+
+- `/docs/scenarios/` 하위에 작성되는 모든 Scenario 문서는
+  `template.md`에 정의된 형식과 구조를 반드시 따른다.
+- 템플릿을 따르지 않은 Scenario 문서는
+  유효한 사용자 흐름 문서로 간주하지 않는다.
+- 템플릿과 Scenario 문서 간 충돌이 발생하는 경우,
+  다음 우선순위를 따른다.
+
+우선순위:
+
+1. 상위 글로벌 규칙 문서 (overview, rules)
+2. scenarios-rule.md
+3. template.md
+4. 개별 Scenario 문서
 
 ---
 
