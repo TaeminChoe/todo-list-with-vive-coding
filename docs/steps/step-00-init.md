@@ -102,8 +102,239 @@
 
 ---
 
-## 8. Notes
+## 8. Implementation Guide
+
+프로젝트 루트에서 아래 단계를 순서대로 수행한다.
+**각 단계는 이전 단계가 성공적으로 완료되어야 다음 단계를 진행할 수 있다.**
+
+---
+
+### 단계 1: npm install (의존성 설치)
+
+#### 1-1. npm install 실행
+
+```bash
+npm install --legacy-peer-deps
+```
+
+#### 1-2. npm install 진행 상황 모니터링
+
+npm install은 2~5분 정도 소요된다. **다른 터미널**에서 다음 명령어로 진행 상황을 확인하면서 기다린다.
+
+**실시간 진행 상황 확인 (30초 간격으로 실행)**:
+
+```bash
+# 방법 1: node_modules 크기 확인 (가장 직관적)
+du -sh node_modules 2>/dev/null || echo "아직 생성 중..."
+
+# 방법 2: 설치된 패키지 수 확인
+ls -1 node_modules | wc -l
+
+# 방법 3: npm 프로세스 확인 (실제로 돌아가고 있는지 확인)
+ps aux | grep "npm install" | grep -v grep && echo "✓ npm install 실행 중" || echo "✗ npm install 완료됨"
+```
+
+**진행 흐름 예시**:
+```
+초기:   du -sh node_modules
+        아직 생성 중...
+
+30초:   du -sh node_modules
+        52M     node_modules
+
+1분:    du -sh node_modules
+        165M    node_modules
+
+2분:    du -sh node_modules
+        412M    node_modules
+
+완료:   du -sh node_modules
+        540M    node_modules
+
+        ps aux | grep "npm install" | grep -v grep
+        (아무것도 출력되지 않음 = 완료됨)
+```
+
+#### 1-3. npm install 완료 확인
+
+터미널 프롬프트가 반환되고, 다음 명령어가 정상 작동하면 완료:
+
+```bash
+# node_modules 존재 확인
+ls -d node_modules
+
+# 주요 패키지 설치 확인
+npm list --depth=0
+```
+
+**정상 출력 예시**:
+```
+vive-todo-list@0.0.1
+├── react@18.2.0
+├── react-dom@18.2.0
+├── react-router-dom@6.18.0
+└── (dev dependencies...)
+```
+
+#### 1-4. npm install 실패 시 트러블슈팅
+
+**증상**: 10분 이상 실행되거나 에러 발생
+
+**해결 방법 1 - npm 캐시 초기화**:
+```bash
+npm cache clean --force
+npm install --legacy-peer-deps
+```
+
+**해결 방법 2 - registry 변경**:
+```bash
+npm install --legacy-peer-deps --registry https://registry.npmjs.org/
+```
+
+**해결 방법 3 - yarn 사용 (npm 대체)**:
+```bash
+yarn install
+```
+
+> ℹ️ **팁**: 회사 네트워크에서 문제가 있다면 프록시 설정 확인 필요
+
+---
+
+### 단계 2: 프로젝트 파일 구조 검증
+
+npm install 완료 후, 다음 파일들이 모두 존재하는지 확인:
+
+```bash
+# 간단히 확인하는 명령어
+ls src/App.tsx src/main.tsx src/pages/TodoListPage.tsx \
+   tests/e2e/step-00-init.spec.ts index.html \
+   package.json vite.config.ts tailwind.config.js \
+   playwright.config.ts 2>&1 | wc -l
+
+# 9개 파일이 모두 출력되면 정상
+```
+
+**파일 목록**:
+```
+src/
+  ├── App.tsx
+  ├── main.tsx
+  ├── index.css
+  └── pages/
+      └── TodoListPage.tsx
+tests/
+  └── e2e/
+      └── step-00-init.spec.ts
+index.html
+package.json
+tsconfig.json
+vite.config.ts
+tailwind.config.js
+postcss.config.js
+playwright.config.ts
+node_modules/  (npm install으로 생성됨)
+```
+
+---
+
+### 단계 3: 개발 서버 실행 및 AC 검증
+
+#### 3-1. 개발 서버 시작
+
+```bash
+npm run dev
+```
+
+**예상 출력**:
+```
+  VITE v5.0.2  ready in 234 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  press h to show help
+```
+
+#### 3-2. 브라우저에서 확인
+
+브라우저를 열고 `http://localhost:5173` 접속
+
+**확인 항목**:
+- ✅ AC-000-01: 페이지가 오류 없이 로드됨 (개발자 도구에 에러 없음)
+- ✅ AC-000-02: "My Todo List" 제목이 보임
+- ✅ AC-000-03: 파란색 배경과 흰색 텍스트가 있음 (TailwindCSS 스타일 적용됨)
+- ✅ AC-000-04: "/" 경로에서 TODO 페이지가 렌더링됨
+
+#### 3-3. 개발 서버 유지
+
+다음 단계를 위해 개발 서버는 **계속 실행 상태 유지**
+
+---
+
+### 단계 4: Playwright E2E 테스트 실행
+
+#### 4-1. 새로운 터미널 열기
+
+개발 서버는 실행 중인 상태에서, **새로운 터미널 창**을 열어 아래 명령어 실행:
+
+```bash
+npm run test:e2e
+```
+
+#### 4-2. 테스트 실행 확인
+
+**예상 출력**:
+```
+Running 4 tests using 1 worker
+
+✓ AC-000-01 & AC-000-02: 개발 서버 실행 및 기본 화면 렌더링
+✓ AC-000-03: TailwindCSS 클래스 적용 확인
+✓ AC-000-04: TODO 목록 화면 라우트 존재
+✓ AC-000-05: Playwright 테스트 실행 가능 확인
+
+4 passed (2.5s)
+```
+
+#### 4-3. 테스트 실패 시 처리
+
+**증상**: 일부 테스트 실패
+
+**확인 사항**:
+1. 개발 서버가 `http://localhost:5173`에서 실행 중인지 확인
+2. 브라우저 포트 5173이 다른 프로세스에 점유되지 않았는지 확인
+3. node_modules가 완전히 설치되었는지 확인 (`npm list --depth=0`)
+
+**해결 방법**:
+```bash
+# 개발 서버 프로세스 확인/종료
+ps aux | grep "vite" | grep -v grep
+killall node  # 기존 프로세스 강제 종료
+
+# 다시 시도
+npm run dev  # (터미널 1)
+npm run test:e2e  # (터미널 2)
+```
+
+---
+
+### 단계 5: Step 완료 확인 및 커밋
+
+#### 5-1. 모든 AC 충족 확인
+
+- ✅ AC-000-01: 개발 서버 오류 없음
+- ✅ AC-000-02: 기본 화면 요소 렌더링
+- ✅ AC-000-03: TailwindCSS 스타일 적용
+- ✅ AC-000-04: "/" 라우트 존재
+- ✅ AC-000-05: E2E 테스트 4개 통과
+
+#### 5-2. Step 완료
+
+모든 항목이 확인되면 Step-00-init 완료 ✓
+
+---
+
+## 9. Notes
 
 - 본 Step은 도메인 기능 개발 이전의 기반 구축 단계다.
+- npm install은 이 Step 내에서 반드시 완료되어야 다음 Step을 진행할 수 있다.
+- 진행 상황 모니터링 명령어를 활용하여 "멈춘 것 같은" 상황을 방지한다.
 - 이후 Step에서 기능 요구사항에 따라 폴더 구조 및 라우팅은 변경될 수 있다.
 - 본 문서는 사용자 책임 하에 관리되며, AI는 수정하지 않는다.
