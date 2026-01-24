@@ -25,6 +25,11 @@ export default function TodoListPage() {
     setInput('')
   }
 
+  // AC-001-07: TODO 삭제
+  const handleDeleteTodo = (id: string) => {
+    setTodos(todos.filter(todo => todo.id !== id))
+  }
+
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       handleAddTodo()
@@ -62,9 +67,15 @@ export default function TodoListPage() {
             {todos.map((todo) => (
               <li
                 key={todo.id}
-                className="p-3 bg-gray-100 rounded-md text-gray-800 break-words"
+                className="flex items-center justify-between p-3 bg-gray-100 rounded-md text-gray-800 break-words"
               >
-                {todo.text}
+                <span className="flex-1">{todo.text}</span>
+                <button
+                  onClick={() => handleDeleteTodo(todo.id)}
+                  className="ml-2 px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition-colors text-sm font-semibold whitespace-nowrap"
+                >
+                  Delete
+                </button>
               </li>
             ))}
           </ul>
