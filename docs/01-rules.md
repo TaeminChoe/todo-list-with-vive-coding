@@ -213,24 +213,34 @@
 
 ### 12.1 npm 실행 방식
 
-npm 래퍼 스크립트가 응답하지 않는 환경에서는 npm 경로를 동적으로 확인하여 node로 npm-cli.js를 직접 호출한다.
+npm 명령어는 교차 플랫폼 호환성을 보장하기 위해 npm.cmd를 우선적으로 호출한다.  
+ 환경에 따라 다음 순서로 시도한다:
 
-**npm 명령어 실행 패턴:**
+**npm 명령어 실행 패턴 (우선순위):**
 
 ```bash
-# Step 1: npm 경로 확인
-NPM_BIN=$(which npm)
-NPM_DIR=$(dirname "$NPM_BIN")
+# 1순위: npm.cmd 직접 호출 (Windows, macOS, Linux 모두 호환)
+npm.cmd install
+npm.cmd run dev
+npm.cmd run build
+npm.cmd run test:e2e
 
-# Step 2: npm 명령어 직접 호출 (예시)
-node "$NPM_DIR/node_modules/npm/bin/npm-cli.js" install
-node "$NPM_DIR/node_modules/npm/bin/npm-cli.js" run dev
-node "$NPM_DIR/node_modules/npm/bin/npm-cli.js" run build
-node "$NPM_DIR/node_modules/npm/bin/npm-cli.js" run test:e2e
-```
+# 대체 방식 (npm.cmd 실패 시)
+npm install
+npm run dev
+npm run build
+npm run test:e2e
 
-### 12.2 적용 범위
+# 최후 방식 (npm이 PATH에 없을 때)
+npx npm install
+npx npm run dev
+npx npm run build
+npx npm run test:e2e
+
+12.2 적용 범위
 
 - 모든 Step 실행 시 npm 명령어가 필요하면 위 패턴을 따른다.
+- AI는 npm.cmd를 기본으로 사용하고, 실패 시 대체 방식을 시도한다.
 - CI/CD 환경에서도 동일하게 적용된다.
-- npm 래퍼 스크립트 대신 항상 npm-cli.js를 직접 호출한다.
+- npm.cmd는 npm 래퍼로서 모든 플랫폼에서 동일하게 작동한다.
+```
