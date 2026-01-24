@@ -36,9 +36,9 @@ test.describe('AC-000-04: TODO 목록 화면 라우트 존재', () => {
     const heading = page.getByRole('heading', { name: 'My Todo List' })
     await expect(heading).toBeVisible()
     
-    // 환영 메시지 확인
-    const welcomeText = page.getByText('Welcome to your todo list application')
-    await expect(welcomeText).toBeVisible()
+    // TODO 입력 UI가 표시됨 (Step-01 이후 추가됨)
+    const input = page.getByPlaceholder(/add.*todo|입력/i)
+    await expect(input).toBeVisible()
   })
 })
 
