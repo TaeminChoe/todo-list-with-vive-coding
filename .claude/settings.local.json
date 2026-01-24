@@ -1,0 +1,210 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node:*)",
+      "Bash(echo:*)",
+      "Bash(timeout 30 npm run build:*)",
+      "Bash(bash -c 'NPM_BIN=$\\(which npm\\) && NPM_DIR=$\\(dirname \"\"$NPM_BIN\"\"\\) && cd /c/Users/temm/Desktop/zien/99_STUDY/vive_todo_list && node \"\"$NPM_DIR/node_modules/npm/bin/npm-cli.js\"\" run test:simple')",
+      "Bash(bash -c:*)"
+    ],
+    "shell": {
+      "allow": [
+        {
+          "command": "node",
+          "args": [
+            "*"
+          ],
+          "description": "Node.js runtime commands"
+        },
+        {
+          "command": "npm",
+          "args": [
+            "*"
+          ],
+          "description": "npm commands"
+        },
+        {
+          "command": "npm.cmd",
+          "args": [
+            "*"
+          ],
+          "description": "npm for Windows shim"
+        },
+        {
+          "command": "npx",
+          "args": [
+            "*"
+          ],
+          "description": "npx commands"
+        },
+        {
+          "command": "git",
+          "args": [
+            "status",
+            "diff",
+            "log",
+            "branch",
+            "checkout",
+            "switch",
+            "pull",
+            "push",
+            "fetch",
+            "add",
+            "commit",
+            "restore"
+          ],
+          "description": "Safe git commands"
+        },
+        {
+          "command": "ls",
+          "args": [
+            "*"
+          ]
+        },
+        {
+          "command": "pwd",
+          "args": [
+            "*"
+          ]
+        },
+        {
+          "command": "cat",
+          "args": [
+            "*"
+          ]
+        },
+        {
+          "command": "echo",
+          "args": [
+            "*"
+          ]
+        },
+        {
+          "command": "rm",
+          "args": [
+            "-rf",
+            "node_modules",
+            "dist",
+            ".next",
+            "build",
+            "coverage"
+          ]
+        },
+        {
+          "command": "mkdir",
+          "args": [
+            "*"
+          ]
+        },
+        {
+          "command": "touch",
+          "args": [
+            "*"
+          ]
+        },
+        {
+          "command": "cp",
+          "args": [
+            "*"
+          ]
+        },
+        {
+          "command": "mv",
+          "args": [
+            "*"
+          ]
+        },
+        {
+          "command": "time",
+          "args": [
+            "*"
+          ]
+        }
+      ],
+      "deny": [
+        {
+          "command": "rm",
+          "args": [
+            "-rf",
+            "/"
+          ],
+          "description": "Never allow destructive root delete"
+        },
+        {
+          "command": "shutdown",
+          "args": [
+            "*"
+          ]
+        },
+        {
+          "command": "reboot",
+          "args": [
+            "*"
+          ]
+        },
+        {
+          "command": "mkfs",
+          "args": [
+            "*"
+          ]
+        },
+        {
+          "command": "curl",
+          "args": [
+            "*"
+          ],
+          "description": "Network tools blocked by default"
+        },
+        {
+          "command": "wget",
+          "args": [
+            "*"
+          ]
+        }
+      ]
+    },
+    "filesystem": {
+      "read": [
+        "**/*"
+      ],
+      "write": [
+        "docs/**",
+        "src/**",
+        "tests/**",
+        "package.json",
+        "package-lock.json",
+        ".env*",
+        "*.md"
+      ],
+      "delete": [
+        "node_modules/**",
+        "dist/**",
+        ".next/**",
+        "build/**",
+        "coverage/**"
+      ]
+    },
+    "network": {
+      "allow": [
+        "registry.npmjs.org"
+      ],
+      "deny": [
+        "*"
+      ]
+    },
+    "process": {
+      "allowSpawn": true,
+      "allowBackground": false
+    }
+  },
+  "version": 1,
+  "project": {
+    "root": "/c/Users/temm/Desktop/zien/99_STUDY/vive_todo_list"
+  },
+  "defaults": {
+    "autoApprove": true,
+    "batchCommands": true,
+    "timeoutSeconds": 120
+  },
+  "notes": "This file is intentionally permissive for local development with Claude Code. Node/npm/git workflows are trusted."
+}

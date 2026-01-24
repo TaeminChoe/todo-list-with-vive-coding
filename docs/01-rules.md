@@ -201,8 +201,36 @@
 
 ## 11. 이 문서의 위상
 
-이 문서는 `00-overview.md` 다음으로 우선하는  
+이 문서는 `00-overview.md` 다음으로 우선하는
 **프로젝트 전반의 공통 규칙 문서**다.
 
-이 문서의 규칙을 따르지 않는 구현은  
+이 문서의 규칙을 따르지 않는 구현은
 완료되지 않은 구현으로 간주한다.
+
+---
+
+## 12. npm 명령어 실행 규칙 (개발 환경 도구)
+
+### 12.1 npm 실행 방식
+
+npm 래퍼 스크립트가 응답하지 않는 환경에서는 npm 경로를 동적으로 확인하여 node로 npm-cli.js를 직접 호출한다.
+
+**npm 명령어 실행 패턴:**
+
+```bash
+# Step 1: npm 경로 확인
+NPM_BIN=$(which npm)
+NPM_DIR=$(dirname "$NPM_BIN")
+
+# Step 2: npm 명령어 직접 호출 (예시)
+node "$NPM_DIR/node_modules/npm/bin/npm-cli.js" install
+node "$NPM_DIR/node_modules/npm/bin/npm-cli.js" run dev
+node "$NPM_DIR/node_modules/npm/bin/npm-cli.js" run build
+node "$NPM_DIR/node_modules/npm/bin/npm-cli.js" run test:e2e
+```
+
+### 12.2 적용 범위
+
+- 모든 Step 실행 시 npm 명령어가 필요하면 위 패턴을 따른다.
+- CI/CD 환경에서도 동일하게 적용된다.
+- npm 래퍼 스크립트 대신 항상 npm-cli.js를 직접 호출한다.
