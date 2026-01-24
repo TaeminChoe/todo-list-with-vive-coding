@@ -9,6 +9,8 @@ interface Todo {
 export default function TodoListPage() {
   const [todos, setTodos] = useState<Todo[]>([])
   const [input, setInput] = useState('')
+  const [editingId, setEditingId] = useState<string | null>(null)
+  const [editInput, setEditInput] = useState('')
 
   const handleAddTodo = () => {
     // AC-001-02: 빈 입력 또는 공백만 입력 시 추가하지 않음
@@ -37,6 +39,34 @@ export default function TodoListPage() {
     setTodos(todos.map(todo =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
     ))
+  }
+
+  // AC-001-03, AC-001-04, AC-001-05: TODO 수정
+  const handleEditStart = (id: string, currentText: string) => {
+    setEditingId(id)
+    setEditInput(currentText)
+  }
+
+  const handleEditSave = (id: string) => {
+    // AC-001-05: 유효하지 않은 입력(공백)은 반영되지 않음
+    if (!editInput.trim()) {
+      setEditingId(null)
+      setEditInput('')
+      return
+    }
+
+    // AC-001-03: 유효한 입력으로 수정 반영
+    setTodos(todos.map(todo =>
+      todo.id === id ? { ...todo, text: editInput.trim() } : todo
+    ))
+    setEditingId(null)
+    setEditInput('')
+  }
+
+  // AC-001-04: 수정 취소
+  const handleEditCancel = () => {
+    setEditingId(null)
+    setEditInput('')
   }
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -78,21 +108,55 @@ export default function TodoListPage() {
                 key={todo.id}
                 className="flex items-center gap-2 p-3 bg-gray-100 rounded-md text-gray-800 break-words"
               >
-                <button
-                  onClick={() => handleToggleComplete(todo.id)}
-                  className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors text-sm font-semibold whitespace-nowrap"
-                >
-                  Complete
-                </button>
-                <span className={todo.completed ? 'flex-1 line-through text-gray-500' : 'flex-1'}>
-                  {todo.text}
-                </span>
-                <button
-                  onClick={() => handleDeleteTodo(todo.id)}
-                  className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition-colors text-sm font-semibold whitespace-nowrap"
-                >
-                  Delete
-                </button>
+                {editingId === todo.id ? (
+                  // 수정 모드
+                  <>
+                    <input
+                      type="text"
+                      value={editInput}
+                      onChange={(e) => setEditInput(e.target.value)}
+                      className="flex-1 px-2 py-1 border border-blue-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      autoFocus
+                    />
+                    <button
+                      onClick={() => handleEditSave(todo.id)}
+                      className="px-3 py-1 bg-green-500 text-white rounded hover:bg-green-600 transition-colors text-sm font-semibold whitespace-nowrap"
+                    >
+                      Save
+                    </button>
+                    <button
+                      onClick={handleEditCancel}
+                      className="px-3 py-1 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors text-sm font-semibold whitespace-nowrap"
+                    >
+                      Cancel
+                    </button>
+                  </>
+                ) : (
+                  // 일반 모드
+                  <>
+                    <button
+                      onClick={() => handleToggleComplete(todo.id)}
+                      className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors text-sm font-semibold whitespace-nowrap"
+                    >
+                      Complete
+                    </button>
+                    <span className={todo.completed ? 'flex-1 line-through text-gray-500' : 'flex-1'}>
+                      {todo.text}
+                    </span>
+                    <button
+                      onClick={() => handleEditStart(todo.id, todo.text)}
+                      className="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition-colors text-sm font-semibold whitespace-nowrap"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDeleteTodo(todo.id)}
+                      className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition-colors text-sm font-semibold whitespace-nowrap"
+                    >
+                      Delete
+                    </button>
+                  </>
+                )}
               </li>
             ))}
           </ul>
