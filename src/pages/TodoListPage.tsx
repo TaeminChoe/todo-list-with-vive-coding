@@ -3,6 +3,7 @@ import { useState } from 'react'
 interface Todo {
   id: string
   text: string
+  completed: boolean
 }
 
 export default function TodoListPage() {
@@ -19,6 +20,7 @@ export default function TodoListPage() {
     const newTodo: Todo = {
       id: Date.now().toString(),
       text: input.trim(),
+      completed: false,
     }
 
     setTodos([...todos, newTodo])
@@ -28,6 +30,13 @@ export default function TodoListPage() {
   // AC-001-07: TODO 삭제
   const handleDeleteTodo = (id: string) => {
     setTodos(todos.filter(todo => todo.id !== id))
+  }
+
+  // AC-001-06: TODO 완료 상태 토글
+  const handleToggleComplete = (id: string) => {
+    setTodos(todos.map(todo =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    ))
   }
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -67,12 +76,20 @@ export default function TodoListPage() {
             {todos.map((todo) => (
               <li
                 key={todo.id}
-                className="flex items-center justify-between p-3 bg-gray-100 rounded-md text-gray-800 break-words"
+                className="flex items-center gap-2 p-3 bg-gray-100 rounded-md text-gray-800 break-words"
               >
-                <span className="flex-1">{todo.text}</span>
+                <button
+                  onClick={() => handleToggleComplete(todo.id)}
+                  className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors text-sm font-semibold whitespace-nowrap"
+                >
+                  Complete
+                </button>
+                <span className={todo.completed ? 'flex-1 line-through text-gray-500' : 'flex-1'}>
+                  {todo.text}
+                </span>
                 <button
                   onClick={() => handleDeleteTodo(todo.id)}
-                  className="ml-2 px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition-colors text-sm font-semibold whitespace-nowrap"
+                  className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition-colors text-sm font-semibold whitespace-nowrap"
                 >
                   Delete
                 </button>
