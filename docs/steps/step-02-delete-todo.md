@@ -42,7 +42,7 @@
 
 ## 4. Acceptance Criteria (Step Final)
 
-### AC-001-07: TODO 삭제
+### AC-02-01: TODO 삭제
 
 **Given**
 - 사용자가 삭제할 Todo를 목록에서 찾은 상태

@@ -42,7 +42,7 @@
 
 ## 4. Acceptance Criteria (Step Final)
 
-### AC-001-06: TODO 완료 상태 토글
+### AC-03-01: TODO 완료 상태 토글
 
 **Given**
 - 사용자가 상태를 변경할 Todo를 목록에서 찾은 상태
