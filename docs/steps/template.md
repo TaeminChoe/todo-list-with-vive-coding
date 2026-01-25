@@ -32,10 +32,7 @@
   -
 - Scenarios:
   - docs/scenarios/SCN-XXX.md
-- Acceptance Criteria:
-  - docs/acceptance-criteria/AC-XXX.md
-- Decisions:
-  - docs/decisions/DEC-XXX.md
+- Acceptance Criteria (inline in this document)
 - Issues:
   - docs/issues/logs/ISS-YYYY-MM-DD-HHMM-context.md
 

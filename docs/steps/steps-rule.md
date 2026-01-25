@@ -70,8 +70,6 @@ Step 문서는 “요구사항 전체 설명서”가 아니라,
   - 규칙 문서(Rule Documents)
   - 프로세스 문서(Process Documents)
   - Step 문서가 지정한 특정 시나리오 문서/구간
-  - Step 문서가 지정한 특정 Acceptance Criteria 문서/구간
-  - Step 문서가 지정한 특정 Decision 문서
   - Step 문서가 지정한 특정 이슈 로그 파일(`/docs/issues/logs/...`)
 
 AI는 암묵적 맥락(이전 대화, 다른 Step, 일반 상식)을 근거로 구현을 확장하지 않는다.
