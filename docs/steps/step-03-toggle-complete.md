@@ -6,7 +6,7 @@
 
 - **Step ID**: step-03-toggle-complete
 - **Title**: TODO 완료 상태 토글
-- **Goal**:  
+- **Goal**:
   사용자가 TODO 항목의 완료 여부를 전환할 수 있다.
 
 ---
@@ -33,8 +33,6 @@
 
 - Scenarios:
   - docs/scenarios/scenario-03-toggle-complete.md (SCN-003)
-- Acceptance Criteria:
-  - docs/acceptance-criteria/ac-01-todo.md (AC-001-06)
 - Decisions:
   - (없음)
 - Issues:
@@ -44,7 +42,16 @@
 
 ## 4. Acceptance Criteria (Step Final)
 
-- **AC-001-06**: 사용자가 완료 상태 토글 동작을 수행하면, 해당 Todo의 완료 상태가 변경되어 목록에 표시된다.
+### AC-001-06: TODO 완료 상태 토글
+
+**Given**
+- 사용자가 상태를 변경할 Todo를 목록에서 찾은 상태
+
+**When**
+- 사용자가 완료 상태 토글 동작을 수행한다
+
+**Then**
+- 해당 Todo의 완료 상태가 변경되어 목록에 표시된다
 
 ---
 

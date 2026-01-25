@@ -6,7 +6,7 @@
 
 - **Step ID**: step-02-delete-todo
 - **Title**: TODO 항목 삭제
-- **Goal**:  
+- **Goal**:
   사용자가 기존 TODO 항목을 목록에서 제거할 수 있다.
 
 ---
@@ -33,8 +33,6 @@
 
 - Scenarios:
   - docs/scenarios/scenario-02-delete-todo.md (SCN-002)
-- Acceptance Criteria:
-  - docs/acceptance-criteria/ac-01-todo.md (AC-001-07)
 - Decisions:
   - (없음)
 - Issues:
@@ -44,7 +42,16 @@
 
 ## 4. Acceptance Criteria (Step Final)
 
-- **AC-001-07**: 사용자가 기존 Todo에 대해 삭제 동작을 수행하면, 해당 Todo는 목록에서 제거된다.
+### AC-001-07: TODO 삭제
+
+**Given**
+- 사용자가 삭제할 Todo를 목록에서 찾은 상태
+
+**When**
+- 사용자가 삭제 동작을 수행한다
+
+**Then**
+- 해당 Todo는 목록에서 제거된다
 
 ---
 

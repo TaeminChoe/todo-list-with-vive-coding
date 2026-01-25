@@ -62,15 +62,25 @@ Roadmap은 다음을 정의하지 않는다.
 
 ## 6. Pull Request Rules
 
+### 브랜치 전략
+
+- 개발 시작 시 feature 브랜치를 생성한다: `feature/[scope]`
+- 모든 Step은 feature 브랜치에서 진행한다
+- 각 Step 완료 후 feature 브랜치에 커밋한다
+
+### PR 생성 조건
+
 - PR은 개별 Step 완료 시점에 생성하지 않는다.
-- PR은 다음 조건을 만족했을 때 생성한다.
+- PR은 다음 조건을 만족했을 때 생성한다:
+  - Roadmap에 정의된 **모든 Step이 완료되었을 때**
+  - feature 브랜치를 main으로 merge하기 전
+  - 모든 E2E 테스트가 통과했을 때
 
-PR 생성 조건:
+### PR 요구사항
 
-- Roadmap에 정의된 **모든 Step이 완료되었을 때**
-
-- PR은 여러 Step 커밋을 포함하는 **검토 단위**다.
-- Step은 실행 단위이며, PR과 동일하지 않다.
+- PR 제목: 명확한 기능 설명 포함
+- PR 본문: 구현된 모든 Step, 테스트 결과 포함
+- Commits: Step 단위로 분리되어 있어야 함
 
 ---
 

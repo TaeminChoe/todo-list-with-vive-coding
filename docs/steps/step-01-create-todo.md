@@ -6,7 +6,7 @@
 
 - **Step ID**: step-01-create-todo
 - **Title**: TODO 항목 생성
-- **Goal**:  
+- **Goal**:
   사용자가 입력한 TODO 항목을 목록에 추가할 수 있는 기본 생성 기능을 제공한다.
 
 ---
@@ -34,8 +34,6 @@
 
 - Scenarios:
   - docs/scenarios/scenario-01-create-todo.md (SCN-001)
-- Acceptance Criteria:
-  - docs/acceptance-criteria/ac-01-todo.md (AC-001-01, AC-001-02)
 - Decisions:
   - (없음)
 - Issues:
@@ -45,8 +43,29 @@
 
 ## 4. Acceptance Criteria (Step Final)
 
-- **AC-001-01**: 사용자가 유효한 내용을 입력하고 추가 동작을 수행하면, 새로운 Todo가 목록에 표시된다.
-- **AC-001-02**: 사용자가 빈 입력 또는 유효하지 않은 입력으로 추가 동작을 수행하면, Todo는 생성되지 않는다.
+### AC-001-01: 유효한 입력으로 TODO 생성
+
+**Given**
+- 사용자가 TODO 서비스에 접근한 상태
+
+**When**
+- 사용자가 유효한 내용을 입력하고 추가 동작을 수행한다
+
+**Then**
+- 새로운 Todo가 목록에 표시된다
+
+---
+
+### AC-001-02: 빈/유효하지 않은 입력으로 TODO 생성 시도
+
+**Given**
+- 사용자가 TODO 서비스에 접근한 상태
+
+**When**
+- 사용자가 빈 입력 또는 유효하지 않은 입력으로 추가 동작을 수행한다
+
+**Then**
+- Todo는 생성되지 않는다
 
 ---
 
