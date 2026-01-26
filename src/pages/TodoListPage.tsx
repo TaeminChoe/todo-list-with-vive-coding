@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Todo } from '../types/Todo'
-import { createTodo, updateTodo, validateMessage } from '../utils/todoHelpers'
+import { createTodo, updateTodo, validateMessage, formatCreatedDate } from '../utils/todoHelpers'
 
 export default function TodoListPage() {
   const [todos, setTodos] = useState<Todo[]>([])
@@ -143,13 +143,18 @@ export default function TodoListPage() {
                     >
                       Complete
                     </button>
-                    <span className={
-                      todo.status === "COMPLETE"
-                        ? 'flex-1 line-through text-gray-500'
-                        : 'flex-1'
-                    }>
-                      {todo.message}
-                    </span>
+                    <div className="flex-1">
+                      <div className={
+                        todo.status === "COMPLETE"
+                          ? 'line-through text-gray-500'
+                          : ''
+                      }>
+                        {todo.message}
+                      </div>
+                      <div className="text-xs text-gray-500 mt-1">
+                        {formatCreatedDate(todo.createdAt)}
+                      </div>
+                    </div>
                     <button
                       onClick={() => handleEditStart(todo.id, todo.message)}
                       className="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition-colors text-sm font-semibold whitespace-nowrap"
