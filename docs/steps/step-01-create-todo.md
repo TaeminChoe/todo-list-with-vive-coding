@@ -30,14 +30,13 @@
 
 ## 3. References (Explicit Only)
 
-여기에 명시되지 않은 파일은 존재하지 않는 것으로 간주한다.
+### Always Available (Default References)
+- 00-overview.md
+- 01-rules.md
+- docs/steps/steps-rule.md
 
-- Scenarios:
-  - docs/scenarios/scenario-01-create-todo.md (SCN-001)
-- Decisions:
-  - (없음)
-- Issues:
-  - (없음)
+### Step-Specific References
+- docs/scenarios/scenario-01-create-todo.md (SCN-001)
 
 ---
 

@@ -25,16 +25,14 @@
 
 ## 3. References (Explicit Only)
 
-이 Step에서 **참조가 허용된 파일 목록**이다.  
-여기에 명시되지 않은 파일은 **존재하지 않는 것으로 간주**한다.
+### Always Available (Default References)
+- 00-overview.md
+- 01-rules.md
+- docs/steps/steps-rule.md
 
-- design:
-  -
-- Scenarios:
-  - docs/scenarios/SCN-XXX.md
-- Acceptance Criteria (inline in this document)
-- Issues:
-  - docs/issues/logs/ISS-YYYY-MM-DD-HHMM-context.md
+### Step-Specific References
+- docs/scenarios/scenario-XX-xxx.md (SCN-XXX) (필요 시)
+- docs/issues/logs/ISS-YYYY-MM-DD-HHMM-context.md (필요 시)
 
 ---
 
