@@ -1,0 +1,39 @@
+flowchart TD
+    Start([Step 프로세스 시작<br/>요청된 모든 Step 반복]) --> SelectStep["🔄 Step 선택<br/>(미완료 Step)"]
+
+    SelectStep --> AllStepDone{모든 Step<br/>완료?}
+    AllStepDone -->|예| FinalSuccess([✅ 모든 Step 완료])
+    AllStepDone -->|아니오| ReadDoc["Step 문서 정독<br/>상위 문서 + 참조 문서"]
+
+    ReadDoc --> TDDCycle["TDD 사이클<br/>(Step의 모든 AC 충족할 때까지)<br/><br/>각 AC마다:<br/>• 테스트 코드 작성<br/>• 코드 구현<br/>• 테스트 검증<br/>• 리팩토링 (필요시)<br/>• 다음 AC로 진행"]
+
+    TDDCycle --> TDDCheck{TDD 완료<br/>모든 AC<br/>통과?}
+
+    TDDCheck -->|아니오| ErrorIssue["⚠️ 에러 발생<br/>이슈 기록<br/>ISS-*.md<br/><br/>• 기능 제외/비활성화<br/>• 스텁 처리<br/>• 변경사항 정리"]
+    ErrorIssue --> NextStep["다음 Step으로 진행<br/>(진행 중단 안함)"]
+
+    TDDCheck -->|예| TypeCheck["TypeScript 타입 검사<br/>npx tsc --noEmit"]
+
+    TypeCheck --> TypePass{타입 체크<br/>통과?}
+    TypePass -->|실패| TypeFix["타입 에러 수정<br/>TDD 사이클 재실행"]
+    TypeFix --> TDDCycle
+
+    TypePass -->|통과| Commit["Step 단위 커밋<br/>.gitmessage 규칙 준수<br/>1개의 통합 커밋"]
+
+    Commit --> NextStep
+
+    NextStep --> SelectStep
+
+    style Start fill:#e1f5ff,color:#000,stroke:#0277bd,stroke-width:2px
+    style SelectStep fill:#fff9c4,color:#000,stroke:#f57f17,stroke-width:2px
+    style ReadDoc fill:#b3e5fc,color:#000,stroke:#01579b,stroke-width:2px
+    style TDDCycle fill:#c8e6c9,color:#000,stroke:#2e7d32,stroke-width:3px
+    style TypeCheck fill:#b3e5fc,color:#000,stroke:#01579b,stroke-width:2px
+    style Commit fill:#b3e5fc,color:#000,stroke:#01579b,stroke-width:2px
+    style FinalSuccess fill:#c8e6c9,color:#000,stroke:#00695c,stroke-width:2px
+    style ErrorIssue fill:#fff9c4,color:#000
+    style TypeFix fill:#fff9c4,color:#000
+    style NextStep fill:#fff9c4,color:#000
+    style AllStepDone fill:#fff9c4,color:#000,stroke:#f57f17,stroke-width:2px
+    style TDDCheck fill:#fff9c4,color:#000,stroke:#f57f17,stroke-width:2px
+    style TypePass fill:#fff9c4,color:#000,stroke:#f57f17,stroke-width:2px

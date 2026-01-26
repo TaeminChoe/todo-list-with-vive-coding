@@ -1,0 +1,27 @@
+flowchart TD
+    Start([사용자: 개발 진행 요청]) --> CreateBranch["1️⃣ Feature Branch 생성<br/>feature/cycle-XXX-summary<br/>(예: cycle-001-edit-flow-chart)"]
+
+    CreateBranch --> DocValidation["2️⃣ 문서 검증<br/>사용자 작성 문서의 규칙/템플릿 준수<br/><br/>검증 항목:<br/>• 정의/개념 충돌 확인<br/>• 규칙 준수 여부 확인<br/>• 템플릿 준수 여부 확인"]
+
+    DocValidation --> DocCheck{문서 검증<br/>통과?}
+
+    DocCheck -->|아니오| DocIssue["⚠️ 규칙/템플릿 위반<br/>이슈 기록<br/>ISS-*.md"]
+    DocIssue --> WaitUser1["⏸️ 사용자 판단 대기"]
+    WaitUser1 --> End1([❌ 개발 사이클 중단])
+
+    DocCheck -->|예| StepsDev["3️⃣ 모든 Step 개발 진행<br/><br/>각 Step마다:<br/>• 시나리오/AC 확인<br/>• TDD 사이클<br/>• TypeScript 타입 검사<br/>• Step 단위 커밋<br/><br/>상세: step-cycle.mmd 참조"]
+
+    StepsDev --> PullRequest["4️⃣ Pull Request 작성<br/>Feature branch → PR<br/>리뷰 요청"]
+
+    PullRequest --> Success([✅ 개발 사이클 완료<br/>PR 리뷰 대기<br/>머지는 사용자 책임])
+
+    style Start fill:#e1f5ff,color:#000,stroke:#0277bd,stroke-width:2px
+    style CreateBranch fill:#b3e5fc,color:#000,stroke:#01579b,stroke-width:2px
+    style DocValidation fill:#b3e5fc,color:#000,stroke:#01579b,stroke-width:2px
+    style StepsDev fill:#fff9c4,color:#000,stroke:#f57f17,stroke-width:3px
+    style PullRequest fill:#b3e5fc,color:#000,stroke:#01579b,stroke-width:2px
+    style Success fill:#c8e6c9,color:#000,stroke:#00695c,stroke-width:2px
+    style End1 fill:#ffccbc,color:#000,stroke:#d84315,stroke-width:2px
+    style WaitUser1 fill:#fff9c4,color:#000
+    style DocIssue fill:#ffccbc,color:#000
+    style DocCheck fill:#fff9c4,color:#000,stroke:#f57f17,stroke-width:2px

@@ -53,10 +53,8 @@ YYYY-MM-DD HH:MM (Asia/Seoul)
 - 관련 문서 목록
   - 00-overview.md
   - 01-rules.md
-  - 02-scenarios.md
-  - 03-acceptance-criteria.md
-  - 04-roadmap.md
-  - Step 문서 / 시나리오 ID / AC ID 등
+  - docs/scenarios/scenarios-rule.md
+  - Step 문서 / 시나리오 파일 등
 
 ---
 
