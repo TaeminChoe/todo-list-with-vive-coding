@@ -78,7 +78,7 @@ Acceptance Criteria(수용 기준)는 **Step이 완료되었을 때 시스템이
 
 ---
 
-## 4. Step 문서 독립성 원칙 (중요)
+## 5. Step 문서 독립성 원칙 (중요)
 
 ### 4.1 단일 Step 참조 원칙
 
@@ -99,6 +99,7 @@ Acceptance Criteria(수용 기준)는 **Step이 완료되었을 때 시스템이
 - Step 문서에서 참조하지 않은 문서는 존재하지 않는 것으로 간주한다.
 - Step 문서가 참조할 수 있는 문서 범위는 다음으로 제한한다.
   - 규칙 문서(Rule Documents)
+  - 도메인 문서(Domain Documents): `/docs/domains/`
   - 프로세스 문서(Process Documents)
   - Step 문서가 지정한 특정 시나리오 문서/구간
   - Step 문서가 지정한 특정 이슈 로그 파일(`/docs/issues/logs/...`)
@@ -107,7 +108,35 @@ AI는 암묵적 맥락(이전 대화, 다른 Step, 일반 상식)을 근거로 �
 
 ---
 
-## 5. 범위 및 추론 금지 규칙
+### 5.3 Default References (기본 참조 문서)
+
+모든 Step 문서는 다음 문서를 항상 참조할 수 있다.
+(Step 문서의 References 섹션에 명시적으로 기재할 필요 없음)
+
+- `00-overview.md` (최상위 규칙)
+- `01-rules.md` (도메인 및 개발 공통 규칙)
+- `docs/steps/steps-rule.md` (Step 실행 규칙)
+
+Step의 References 섹션에는 **Always Available (Default References)** 라는 헤더 아래에 위 3개 문서를 명시하고,
+그 아래 **Step-Specific References** 라는 헤더로 Step이 특별히 참조하는 문서만 기재한다.
+
+예시:
+```markdown
+## 3. References (Explicit Only)
+
+### Always Available (Default References)
+- 00-overview.md
+- 01-rules.md
+- docs/steps/steps-rule.md
+
+### Step-Specific References
+- docs/scenarios/scenario-01-create-todo.md (SCN-001)
+- docs/domains/todo.md
+```
+
+---
+
+## 6. 범위 및 추론 금지 규칙
 
 ### 5.1 범위 고정 원칙
 
@@ -123,7 +152,7 @@ AI는 암묵적 맥락(이전 대화, 다른 Step, 일반 상식)을 근거로 �
 
 ---
 
-## 6. Step 세부 실행 프로세스
+## 7. Step 세부 실행 프로세스
 
 개발 요청에서 "Step 프로세스 실행" 단계(01-rules.md 13.1의 4단계)에 해당하는
 Step 내부의 세부 프로세스를 정의한다.
@@ -208,16 +237,31 @@ Step의 모든 작업이 완료되면(TDD 사이클 + 타입 검사), Step 단�
 ### 6.6 Step 실행 규칙
 
 - 구현 코드를 테스트보다 먼저 작성하지 않는다.
-- 테스트 도구 선택은 `01-rules.md`의 전역 규칙을 따른다.
-  - (기본값: E2E는 Playwright)
 - Step 문서에 없는 기능/테스트를 임의로 추가하지 않는다.
 - 각 Step은 **독립적으로 개발 가능**해야 한다.
   - 특정 데이터나 기능이 필요하면 테스트 내에서 구성 (mock 데이터, fixture 등)
   - 다른 Step의 완료 상태에 의존하지 않는다.
 
+### 7.7 테스트 도구 규칙 (Playwright)
+
+**기본값 (Default)**
+
+- 본 프로젝트의 사용자 관점 테스트(E2E)는 **Playwright**를 기본 도구로 사용한다.
+- Step 문서에서 별도 지시가 없는 한, 모든 사용자 시나리오 검증은 Playwright 테스트로 작성한다.
+
+**테스트 파일 관리**
+
+- 테스트 파일명/경로/네이밍은 Step 문서의 "Test Specification" 섹션에서 명시한다.
+- 명시되지 않은 경우 새로운 테스트 명명 규칙을 임의로 도입하지 않는다.
+
+**단위 테스트(Unit) 도구**
+
+- 단위 테스트(Vitest, Jest 등)의 도입은 기본값이 아니다.
+- 필요 시 Step 문서에서만 명시적으로 허용한다.
+
 ---
 
-## 7. 실행 중 문제 발생 시 규칙
+## 8. 실행 중 문제 발생 시 규칙
 
 - 판단이 불가능한 문제가 발생하면:
   - 작업을 즉시 중단하지 않는다.
@@ -232,7 +276,7 @@ Step의 모든 작업이 완료되면(TDD 사이클 + 타입 검사), Step 단�
 
 ---
 
-## 8. Step 문서 템플릿 준수 규칙 (필수)
+## 9. Step 문서 템플릿 준수 규칙 (필수)
 
 - 모든 Step 문서는 `/docs/steps/template.md`(또는 Step 템플릿으로 지정된 파일)의 규칙과 구조를 따른다.
 - Step 문서가 템플릿을 위반하면 유효한 실행 기준으로 간주하지 않는다.
@@ -243,7 +287,7 @@ Step의 모든 작업이 완료되면(TDD 사이클 + 타입 검사), Step 단�
 
 ---
 
-## 9. Step 완료 기준 (Definition of Done)
+## 10. Step 완료 기준 (Definition of Done)
 
 Step은 다음 조건을 모두 만족해야 완료로 간주된다.
 
@@ -260,7 +304,7 @@ PR 생성 이후
 
 ---
 
-## 10. Step 문서 수정 규칙
+## 11. Step 문서 수정 규칙
 
 - Step 문서는 사용자만 수정할 수 있다.
 - AI는 Step 문서를 직접 수정하지 않는다.
@@ -269,7 +313,7 @@ PR 생성 이후
   - 변경된 부분의 영향 범위만 수정한다.
 - 전체 재구현이 필요하면, 그 사유를 사용자에게 명시적으로 보고한다.
 
-## 11. Design Reference 부재 시 추론 금지 규칙
+## 12. Design Reference 부재 시 추론 금지 규칙
 
 - Step 문서의 References 섹션에 Design 항목이 명시되지 않은 경우,
   해당 Step에는 UI/디자인에 대한 외부 결정이 존재하지 않는 것으로 간주한다.
@@ -286,7 +330,7 @@ PR 생성 이후
 
 ---
 
-## 12. Step 실행 중 타임아웃 정책
+## 13. Step 실행 중 타임아웃 정책
 
 Step 실행 중 문제로 인한 20분 이상의 지체 발생 시, AI는 다음 규칙을 따른다.
 
@@ -345,7 +389,7 @@ Step 실행 중 문제로 인한 20분 이상의 지체 발생 시, AI는 다음
 
 ---
 
-## 13. 이 문서의 위상
+## 14. 이 문서의 위상
 
 이 문서는 `/docs/steps/` 하위에서 Step 실행 문서에 대한 **최상위 규칙 문서**다.
 본 문서의 규칙을 따르지 않는 Step 문서는 유효한 실행 기준으로 간주되지 않는다.

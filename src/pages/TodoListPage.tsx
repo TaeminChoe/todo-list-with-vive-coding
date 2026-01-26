@@ -1,10 +1,6 @@
 import { useState } from 'react'
-
-interface Todo {
-  id: string
-  text: string
-  completed: boolean
-}
+import { Todo } from '../types/Todo'
+import { createTodo, updateTodo, validateMessage, formatCreatedDate } from '../utils/todoHelpers'
 
 export default function TodoListPage() {
   const [todos, setTodos] = useState<Todo[]>([])
@@ -13,18 +9,17 @@ export default function TodoListPage() {
   const [editInput, setEditInput] = useState('')
 
   const handleAddTodo = () => {
-    // AC-001-02: 빈 입력 또는 공백만 입력 시 추가하지 않음
-    if (!input.trim()) {
+    const trimmedInput = input.trim()
+
+    if (!trimmedInput) {
       return
     }
 
-    // AC-001-01: 유효한 입력으로 TODO 생성
-    const newTodo: Todo = {
-      id: Date.now().toString(),
-      text: input.trim(),
-      completed: false,
+    if (!validateMessage(trimmedInput)) {
+      return
     }
 
+    const newTodo = createTodo(trimmedInput)
     setTodos([...todos, newTodo])
     setInput('')
   }
@@ -36,28 +31,36 @@ export default function TodoListPage() {
 
   // AC-001-06: TODO 완료 상태 토글
   const handleToggleComplete = (id: string) => {
-    setTodos(todos.map(todo =>
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo
-    ))
+    setTodos(todos.map(todo => {
+      if (todo.id === id) {
+        const newStatus = todo.status === "COMPLETE" ? "NOT_COMPLETE" : "COMPLETE"
+        return updateTodo(todo, { status: newStatus })
+      }
+      return todo
+    }))
   }
 
   // AC-001-03, AC-001-04, AC-001-05: TODO 수정
-  const handleEditStart = (id: string, currentText: string) => {
+  const handleEditStart = (id: string, currentMessage: string) => {
     setEditingId(id)
-    setEditInput(currentText)
+    setEditInput(currentMessage)
   }
 
   const handleEditSave = (id: string) => {
-    // AC-001-05: 유효하지 않은 입력(공백)은 반영되지 않음
-    if (!editInput.trim()) {
+    const trimmedInput = editInput.trim()
+
+    if (!trimmedInput) {
       setEditingId(null)
       setEditInput('')
       return
     }
 
-    // AC-001-03: 유효한 입력으로 수정 반영
+    if (!validateMessage(trimmedInput)) {
+      return
+    }
+
     setTodos(todos.map(todo =>
-      todo.id === id ? { ...todo, text: editInput.trim() } : todo
+      todo.id === id ? updateTodo(todo, { message: trimmedInput }) : todo
     ))
     setEditingId(null)
     setEditInput('')
@@ -140,11 +143,20 @@ export default function TodoListPage() {
                     >
                       Complete
                     </button>
-                    <span className={todo.completed ? 'flex-1 line-through text-gray-500' : 'flex-1'}>
-                      {todo.text}
-                    </span>
+                    <div className="flex-1">
+                      <div className={
+                        todo.status === "COMPLETE"
+                          ? 'line-through text-gray-500'
+                          : ''
+                      }>
+                        {todo.message}
+                      </div>
+                      <div className="text-xs text-gray-500 mt-1">
+                        {formatCreatedDate(todo.createdAt)}
+                      </div>
+                    </div>
                     <button
-                      onClick={() => handleEditStart(todo.id, todo.text)}
+                      onClick={() => handleEditStart(todo.id, todo.message)}
                       className="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition-colors text-sm font-semibold whitespace-nowrap"
                     >
                       Edit

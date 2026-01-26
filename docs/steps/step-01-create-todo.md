@@ -30,14 +30,16 @@
 
 ## 3. References (Explicit Only)
 
-여기에 명시되지 않은 파일은 존재하지 않는 것으로 간주한다.
+### Always Available (Default References)
 
-- Scenarios:
-  - docs/scenarios/scenario-01-create-todo.md (SCN-001)
-- Decisions:
-  - (없음)
-- Issues:
-  - (없음)
+- 00-overview.md
+- 01-rules.md
+- docs/steps/steps-rule.md
+
+### Step-Specific References
+
+- docs/domains/todo.md
+- docs/scenarios/scenario-01-create-todo.md (SCN-001)
 
 ---
 
@@ -46,12 +48,15 @@
 ### AC-01-01: 유효한 입력으로 TODO 생성
 
 **Given**
+
 - 사용자가 TODO 서비스에 접근한 상태
 
 **When**
+
 - 사용자가 유효한 내용을 입력하고 추가 동작을 수행한다
 
 **Then**
+
 - 새로운 Todo가 목록에 표시된다
 
 ---
@@ -59,13 +64,34 @@
 ### AC-01-02: 빈/유효하지 않은 입력으로 TODO 생성 시도
 
 **Given**
+
 - 사용자가 TODO 서비스에 접근한 상태
 
 **When**
+
 - 사용자가 빈 입력 또는 유효하지 않은 입력으로 추가 동작을 수행한다
 
 **Then**
+
 - Todo는 생성되지 않는다
+
+---
+
+### AC-01-03: TODO 표출 내용 확인
+
+**Given**
+
+- 사용자가 TODO 서비스에 접근한 상태
+- 이미 추가된 todo가 있는 상태.
+
+**When**
+
+- 사용자가 TODO를 확인한다.
+
+**Then**
+
+- 명시된 데이터가 모두 확인된다.
+  - message, 생성일자(yyyy-MM-dd HH:mm)
 
 ---
 
@@ -79,6 +105,9 @@
 ### Phase B – Core Flow
 
 - TODO를 입력하고 생성하면 목록에 항목이 추가된다.
+- 추가된 항목은 아래 데이터를 표현해야 한다.
+  - message
+  - 생성일자(yyyy-MM-dd HH:mm)
 
 ### Phase C – Edge / Regression
 
