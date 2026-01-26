@@ -99,6 +99,7 @@ Acceptance Criteria(수용 기준)는 **Step이 완료되었을 때 시스템이
 - Step 문서에서 참조하지 않은 문서는 존재하지 않는 것으로 간주한다.
 - Step 문서가 참조할 수 있는 문서 범위는 다음으로 제한한다.
   - 규칙 문서(Rule Documents)
+  - 도메인 문서(Domain Documents): `/docs/domains/`
   - 프로세스 문서(Process Documents)
   - Step 문서가 지정한 특정 시나리오 문서/구간
   - Step 문서가 지정한 특정 이슈 로그 파일(`/docs/issues/logs/...`)
@@ -130,6 +131,7 @@ Step의 References 섹션에는 **Always Available (Default References)** 라는
 
 ### Step-Specific References
 - docs/scenarios/scenario-01-create-todo.md (SCN-001)
+- docs/domains/todo.md
 ```
 
 ---

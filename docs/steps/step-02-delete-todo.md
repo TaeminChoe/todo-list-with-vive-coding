@@ -35,6 +35,7 @@
 - docs/steps/steps-rule.md
 
 ### Step-Specific References
+- docs/domains/todo.md
 - docs/scenarios/scenario-02-delete-todo.md (SCN-002)
 
 ---

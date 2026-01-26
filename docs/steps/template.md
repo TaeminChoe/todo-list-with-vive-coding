@@ -31,6 +31,7 @@
 - docs/steps/steps-rule.md
 
 ### Step-Specific References
+- docs/domains/[domain-name].md (필요 시)
 - docs/scenarios/scenario-XX-xxx.md (SCN-XXX) (필요 시)
 - docs/issues/logs/ISS-YYYY-MM-DD-HHMM-context.md (필요 시)
 
