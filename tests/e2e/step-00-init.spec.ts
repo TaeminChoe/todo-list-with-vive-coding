@@ -6,7 +6,7 @@ test.describe('AC-000-01 & AC-000-02: 개발 서버 실행 및 기본 화면 렌
     
     // AC-000-01: 페이지 로드 성공 확인 (404나 500 에러 없음)
     const url = page.url()
-    expect(url).toContain('localhost:5174')
+    expect(url).toContain('localhost:5173')
     
     // AC-000-02: "My Todo List" 제목이 화면에 렌더링됨
     const heading = page.getByRole('heading', { name: 'My Todo List' })
@@ -52,6 +52,6 @@ test.describe('AC-000-05: Playwright 테스트 실행 가능 확인', () => {
     
     // 테스트 실행 성공
     const url = page.url()
-    expect(url).toContain('localhost:5174')
+    expect(url).toContain('localhost:5173')
   })
 })

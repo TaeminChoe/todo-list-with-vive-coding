@@ -36,7 +36,7 @@ test.describe('Phase B – Core Flow: AC-001-06', () => {
     await toggleButton.click()
     
     // 완료 상태가 시각적으로 표현됨 (줄 긋기 또는 체크 표시)
-    const completedText = todoItem.locator('span').filter({ hasText: 'Learn TypeScript' })
+    const completedText = todoItem.locator('.flex-1 > div').first()
     const classes = await completedText.getAttribute('class')
     expect(classes).toContain('line-through')
   })
@@ -63,11 +63,11 @@ test.describe('Phase B – Core Flow: AC-001-06', () => {
     // Task 2만 완료 상태로 변경
     const task1Item = page.locator('li').filter({ hasText: 'Task 1' })
     const task3Item = page.locator('li').filter({ hasText: 'Task 3' })
-    
-    const task1Classes = await task1Item.locator('span').getAttribute('class')
-    const task2Classes = await task2Item.locator('span').getAttribute('class')
-    const task3Classes = await task3Item.locator('span').getAttribute('class')
-    
+
+    const task1Classes = await task1Item.locator('.flex-1 > div').first().getAttribute('class')
+    const task2Classes = await task2Item.locator('.flex-1 > div').first().getAttribute('class')
+    const task3Classes = await task3Item.locator('.flex-1 > div').first().getAttribute('class')
+
     expect(task1Classes).not.toContain('line-through')
     expect(task2Classes).toContain('line-through')
     expect(task3Classes).not.toContain('line-through')
@@ -87,24 +87,24 @@ test.describe('Phase C – Edge / Regression', () => {
     
     const todoItem = page.locator('li').filter({ hasText: 'Toggle test' })
     const toggleButton = todoItem.locator('button').filter({ hasText: /complete|완료/i })
-    
+
     // 초기: 미완료
-    let classes = await todoItem.locator('span').getAttribute('class')
+    let classes = await todoItem.locator('.flex-1 > div').first().getAttribute('class')
     expect(classes).not.toContain('line-through')
-    
+
     // 1회: 완료로 변경
     await toggleButton.click()
-    classes = await todoItem.locator('span').getAttribute('class')
+    classes = await todoItem.locator('.flex-1 > div').first().getAttribute('class')
     expect(classes).toContain('line-through')
-    
+
     // 2회: 미완료로 변경
     await toggleButton.click()
-    classes = await todoItem.locator('span').getAttribute('class')
+    classes = await todoItem.locator('.flex-1 > div').first().getAttribute('class')
     expect(classes).not.toContain('line-through')
-    
+
     // 3회: 완료로 변경
     await toggleButton.click()
-    classes = await todoItem.locator('span').getAttribute('class')
+    classes = await todoItem.locator('.flex-1 > div').first().getAttribute('class')
     expect(classes).toContain('line-through')
   })
 
