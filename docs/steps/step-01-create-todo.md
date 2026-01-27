@@ -38,8 +38,9 @@
 
 ### Step-Specific References
 
-- docs/domains/todo.md
-- docs/scenarios/scenario-01-create-todo.md (SCN-001)
+- @docs/domains/todo.md
+- @docs/scenarios/scenario-01-create-todo.md (SCN-001)
+- @docs/design/README.md
 
 ---
 

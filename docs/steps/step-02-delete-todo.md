@@ -30,13 +30,16 @@
 ## 3. References (Explicit Only)
 
 ### Always Available (Default References)
+
 - 00-overview.md
 - 01-rules.md
 - docs/steps/steps-rule.md
 
 ### Step-Specific References
+
 - docs/domains/todo.md
 - docs/scenarios/scenario-02-delete-todo.md (SCN-002)
+- @docs/design/README.md
 
 ---
 
@@ -45,12 +48,15 @@
 ### AC-02-01: TODO 삭제
 
 **Given**
+
 - 사용자가 삭제할 Todo를 목록에서 찾은 상태
 
 **When**
+
 - 사용자가 삭제 동작을 수행한다
 
 **Then**
+
 - 해당 Todo는 목록에서 제거된다
 
 ---
