@@ -1,0 +1,36 @@
+{
+  "frames": [
+    {
+      "id": "12:106",
+      "name": "Todo",
+      "type": "FRAME"
+    },
+    {
+      "id": "43:88",
+      "name": "Todo - Empty",
+      "type": "FRAME"
+    },
+    {
+      "id": "101:119",
+      "name": "Colors",
+      "type": "FRAME"
+    },
+    {
+      "id": "101:246",
+      "name": "Components",
+      "type": "FRAME"
+    },
+    {
+      "id": "101:184",
+      "name": "Fonts",
+      "type": "FRAME"
+    },
+    {
+      "id": "56:99",
+      "name": "Capa",
+      "type": "FRAME"
+    }
+  ],
+  "extractedAt": "2026-01-27T06:00:13.521Z",
+  "fileKey": "l7SUhmVh7eVMiwItBzmBjH"
+}

@@ -30,13 +30,16 @@
 ## 3. References (Explicit Only)
 
 ### Always Available (Default References)
+
 - 00-overview.md
 - 01-rules.md
 - docs/steps/steps-rule.md
 
 ### Step-Specific References
+
 - docs/domains/todo.md
 - docs/scenarios/scenario-04-edit-todo.md (SCN-004)
+- @docs/design/README.md
 
 ---
 
@@ -45,12 +48,15 @@
 ### AC-04-01: 유효한 입력으로 TODO 내용 수정
 
 **Given**
+
 - 사용자가 수정할 Todo를 목록에서 찾은 상태
 
 **When**
+
 - 사용자가 유효한 내용을 입력하고 수정 반영 동작을 수행한다
 
 **Then**
+
 - 해당 Todo의 내용이 변경되어 목록에 표시된다
 
 ---
@@ -58,12 +64,15 @@
 ### AC-04-02: TODO 수정 취소
 
 **Given**
+
 - 사용자가 Todo 수정 가능 상태에 있는 경우
 
 **When**
+
 - 사용자가 수정 취소 동작을 수행한다
 
 **Then**
+
 - Todo의 기존 내용이 유지되어 표시된다
 
 ---
@@ -71,12 +80,15 @@
 ### AC-04-03: 유효하지 않은 입력으로 TODO 수정 시도
 
 **Given**
+
 - 사용자가 수정할 Todo를 목록에서 찾은 상태
 
 **When**
+
 - 사용자가 유효하지 않은 내용을 입력하고 수정 반영 동작을 수행한다
 
 **Then**
+
 - 수정 내용은 반영되지 않는다
 
 ---

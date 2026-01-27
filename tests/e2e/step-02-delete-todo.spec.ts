@@ -4,8 +4,8 @@ test.describe('Phase A – Bootstrap', () => {
   test('TODO 목록에 하나 이상의 항목이 존재한다', async ({ page }) => {
     await page.goto('/')
 
-    const input = page.getByPlaceholder(/add.*todo|입력/i)
-    const button = page.getByRole('button', { name: /add|추가/i })
+    const input = page.getByPlaceholder(/adicione|add|입력/i)
+    const button = page.getByRole('button', { name: /criar|add|추가/i })
 
     // TODO 항목 추가
     await input.fill('Test todo for delete')
@@ -21,8 +21,8 @@ test.describe('Phase B – Core Flow: AC-02-01', () => {
   test('특정 TODO 항목을 삭제하면 목록에서 사라진다', async ({ page }) => {
     await page.goto('/')
 
-    const input = page.getByPlaceholder(/add.*todo|입력/i)
-    const button = page.getByRole('button', { name: /add|추가/i })
+    const input = page.getByPlaceholder(/adicione|add|입력/i)
+    const button = page.getByRole('button', { name: /criar|add|추가/i })
 
     // 삭제할 TODO 추가
     await input.fill('Todo to delete')
@@ -43,8 +43,8 @@ test.describe('Phase B – Core Flow: AC-02-01', () => {
   test('여러 항목 중 특정 항목만 삭제된다', async ({ page }) => {
     await page.goto('/')
 
-    const input = page.getByPlaceholder(/add.*todo|입력/i)
-    const button = page.getByRole('button', { name: /add|추가/i })
+    const input = page.getByPlaceholder(/adicione|add|입력/i)
+    const button = page.getByRole('button', { name: /criar|add|추가/i })
 
     // 첫 번째 TODO 추가
     await input.fill('Keep this todo')
@@ -85,8 +85,8 @@ test.describe('Phase C – Edge / Regression', () => {
   test('삭제 후 남은 TODO 항목의 순서와 내용이 유지된다', async ({ page }) => {
     await page.goto('/')
 
-    const input = page.getByPlaceholder(/add.*todo|입력/i)
-    const button = page.getByRole('button', { name: /add|추가/i })
+    const input = page.getByPlaceholder(/adicione|add|입력/i)
+    const button = page.getByRole('button', { name: /criar|add|추가/i })
 
     // 세 개의 TODO 추가
     const todos = ['First item', 'Second item', 'Third item']
@@ -114,8 +114,8 @@ test.describe('Phase C – Edge / Regression', () => {
   test('마지막 TODO를 삭제하면 목록이 비게 된다', async ({ page }) => {
     await page.goto('/')
 
-    const input = page.getByPlaceholder(/add.*todo|입력/i)
-    const button = page.getByRole('button', { name: /add|추가/i })
+    const input = page.getByPlaceholder(/adicione|add|입력/i)
+    const button = page.getByRole('button', { name: /criar|add|추가/i })
 
     // TODO 추가
     await input.fill('Single todo')

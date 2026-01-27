@@ -5,14 +5,14 @@ test.describe('Phase A – Bootstrap', () => {
     await page.goto('/')
 
     // TODO 목록 화면 확인
-    const heading = page.getByRole('heading', { name: 'My Todo List' })
+    const heading = page.getByRole('heading', { name: /todo|my todo list/i })
     await expect(heading).toBeVisible()
 
     // TODO 입력 UI 확인 (입력 필드와 버튼)
-    const input = page.getByPlaceholder(/add.*todo|입력/i)
+    const input = page.getByPlaceholder(/adicione|add|입력/i)
     await expect(input).toBeVisible()
 
-    const button = page.getByRole('button', { name: /add|추가/i })
+    const button = page.getByRole('button', { name: /criar|add|추가/i })
     await expect(button).toBeVisible()
   })
 })
@@ -22,8 +22,8 @@ test.describe('Phase B – Core Flow: AC-001-01 & AC-001-03', () => {
     await page.goto('/')
 
     // 입력 필드와 버튼 찾기
-    const input = page.getByPlaceholder(/add.*todo|입력/i)
-    const button = page.getByRole('button', { name: /add|추가/i })
+    const input = page.getByPlaceholder(/adicione|add|입력/i)
+    const button = page.getByRole('button', { name: /criar|add|추가/i })
 
     // TODO 항목 입력 및 추가
     const todoText = 'Buy milk'
@@ -41,8 +41,8 @@ test.describe('Phase B – Core Flow: AC-001-01 & AC-001-03', () => {
   test('AC-001-03: TODO 생성 시 메시지와 생성일자가 표출된다', async ({ page }) => {
     await page.goto('/')
 
-    const input = page.getByPlaceholder(/add.*todo|입력/i)
-    const button = page.getByRole('button', { name: /add|추가/i })
+    const input = page.getByPlaceholder(/adicione|add|입력/i)
+    const button = page.getByRole('button', { name: /criar|add|추가/i })
 
     const todoText = 'Test todo for date check'
     await input.fill(todoText)
@@ -61,8 +61,8 @@ test.describe('Phase B – Core Flow: AC-001-01 & AC-001-03', () => {
   test('여러 개의 TODO를 차례대로 추가할 수 있다', async ({ page }) => {
     await page.goto('/')
 
-    const input = page.getByPlaceholder(/add.*todo|입력/i)
-    const button = page.getByRole('button', { name: /add|추가/i })
+    const input = page.getByPlaceholder(/adicione|add|입력/i)
+    const button = page.getByRole('button', { name: /criar|add|추가/i })
 
     // 첫 번째 TODO 추가
     await input.fill('Task 1')
@@ -90,8 +90,8 @@ test.describe('Phase C – Edge / Regression: AC-001-02', () => {
   test('빈 입력으로 TODO 추가를 시도하면 생성되지 않는다', async ({ page }) => {
     await page.goto('/')
 
-    const input = page.getByPlaceholder(/add.*todo|입력/i)
-    const button = page.getByRole('button', { name: /add|추가/i })
+    const input = page.getByPlaceholder(/adicione|add|입력/i)
+    const button = page.getByRole('button', { name: /criar|add|추가/i })
 
     // 빈 입력으로 추가 시도
     await input.fill('')
@@ -109,8 +109,8 @@ test.describe('Phase C – Edge / Regression: AC-001-02', () => {
   test('공백만 입력한 경우 TODO가 생성되지 않는다', async ({ page }) => {
     await page.goto('/')
 
-    const input = page.getByPlaceholder(/add.*todo|입력/i)
-    const button = page.getByRole('button', { name: /add|추가/i })
+    const input = page.getByPlaceholder(/adicione|add|입력/i)
+    const button = page.getByRole('button', { name: /criar|add|추가/i })
 
     // 공백만 입력
     await input.fill('   ')
@@ -125,7 +125,7 @@ test.describe('Phase C – Edge / Regression: AC-001-02', () => {
   test('엔터 키로도 TODO를 추가할 수 있다', async ({ page }) => {
     await page.goto('/')
 
-    const input = page.getByPlaceholder(/add.*todo|입력/i)
+    const input = page.getByPlaceholder(/adicione|add|입력/i)
 
     // 입력 후 엔터 키 누르기
     await input.fill('Shopping list')

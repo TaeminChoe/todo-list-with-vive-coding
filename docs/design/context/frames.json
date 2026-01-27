@@ -1,0 +1,44 @@
+[
+  {
+    "id": "12:106",
+    "name": "Todo",
+    "path": "Projeto > Projeto > Todo",
+    "width": 1440,
+    "height": 1024
+  },
+  {
+    "id": "43:88",
+    "name": "Todo - Empty",
+    "path": "Projeto > Projeto > Todo - Empty",
+    "width": 1440,
+    "height": 1024
+  },
+  {
+    "id": "101:119",
+    "name": "Colors",
+    "path": "Assets > Assets > Colors",
+    "width": 1196,
+    "height": 810
+  },
+  {
+    "id": "101:246",
+    "name": "Components",
+    "path": "Assets > Assets > Components",
+    "width": 1196,
+    "height": 1222
+  },
+  {
+    "id": "101:184",
+    "name": "Fonts",
+    "path": "Assets > Assets > Fonts",
+    "width": 1196,
+    "height": 509
+  },
+  {
+    "id": "56:99",
+    "name": "Capa",
+    "path": "Capa > Capa > Capa",
+    "width": 1920,
+    "height": 1280
+  }
+]
