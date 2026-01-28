@@ -5,7 +5,32 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
+      colors: {
+        'todo-gray-700': '#0D0D0D',
+        'todo-gray-600': '#1A1A1A',
+        'todo-gray-500': '#262626',
+        'todo-gray-400': '#333333',
+        'todo-gray-300': '#808080',
+        'todo-gray-200': '#D9D9D9',
+        'todo-gray-100': '#F2F2F2',
+        'todo-blue': '#4EA8DE',
+        'todo-blue-dark': '#1E6F9F',
+        'todo-purple': '#8284FA',
+        'todo-purple-dark': '#5E60CE',
+        'todo-danger': '#E25858',
+      },
+      fontSize: {
+        'todo-title': '28px',
+        'todo-body': '14px',
+      },
+      borderRadius: {
+        'todo': '7.5px',
+      },
+    },
   },
   plugins: [],
 }
